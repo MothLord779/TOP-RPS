@@ -99,7 +99,7 @@ function playGame() {
         console.log("Computer Wins!");
     // If humanScore and computerScore are equal say "It's a Draw!"
     } else {
-        console.assert.log("Draw!");
+        console.log("Draw!");
     };
 
 };
