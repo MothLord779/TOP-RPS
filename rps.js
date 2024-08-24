@@ -15,6 +15,7 @@ function getComputerChoice() {
     } else {
         return "scissors";
     };
+
 };
 
 function getHumanChoice() {
@@ -39,48 +40,71 @@ function getHumanChoice() {
             console.log("Invalid input, please try again.");
             return getHumanChoice();
     };
+
 };
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-
-function playRound(humanChoice, computerChoice) {
-
-    // if humanChoice and computerChoice are the same its draw
-    if (humanChoice === computerChoice) {
-        return "It's a Draw!"
-    // if humanChoice is "rock" and computerChoice is "paper" computer wins
-    } else if (humanChoice === "rock" && computerChoice === "paper") {
+function playGame() {
+    
+    function playRound(humanChoice, computerChoice) {
+    
+        // if humanChoice and computerChoice are the same its draw
+        if (humanChoice === computerChoice) {
+            return "draw"
+        // if humanChoice is "rock" and computerChoice is "paper" computer wins
+        } else if (humanChoice === "rock" && computerChoice === "paper") {
+            computerScore++
+            return "computer"
+        // if humanChoice is "paper" and computerChoice is "scissors" computer wins
+        } else if (humanChoice === "paper" && computerChoice === "scissors") {
         computerScore++
-        return "Computer Wins!"
-    // if humanChoice is "paper" and computerChoice is "scissors" computer wins
-    } else if (humanChoice === "paper" && computerChoice === "scissors") {
-    computerScore++
-        return "Computer Wins!"
-    // if humanChoice is "scissors" and computerChoice is "rock" computer wins
-    } else if (humanChoice === "scissors" && computerChoice === "rock") {
-    computerScore++
-        return "Computer Wins!"
-    // if humanChoice is "rock" and computerChoice is "scissors" human wins
-    } else if (humanChoice === "rock" && computerChoice === "scissors") {
-    humanScore++
-        return "Human Wins!"
-    // if humanChoice is "paper" and computerChoice is "rock" human wins
-    } else if (humanChoice === "paper" && computerChoice === "rock") {
-    humanScore++
-        return "Human Wins!"
-    // if humanChoice is "scissors" and computerChoice is "paper" human wins
-    } else if (humanChoice === "scissors" && computerChoice === "paper") {
-    humanScore++
-        return "Human Wins!"
+            return "computer"
+        // if humanChoice is "scissors" and computerChoice is "rock" computer wins
+        } else if (humanChoice === "scissors" && computerChoice === "rock") {
+        computerScore++
+            return "computer"
+        // if humanChoice is "rock" and computerChoice is "scissors" human wins
+        } else if (humanChoice === "rock" && computerChoice === "scissors") {
+        humanScore++
+            return "human"
+        // if humanChoice is "paper" and computerChoice is "rock" human wins
+        } else if (humanChoice === "paper" && computerChoice === "rock") {
+        humanScore++
+            return "human"
+        // if humanChoice is "scissors" and computerChoice is "paper" human wins
+        } else if (humanChoice === "scissors" && computerChoice === "paper") {
+        humanScore++
+            return "human"
+        } else {
+            return "error"
+        };
+    
+    };
+
+    // Create a 5 iteration for loop
+    for (let i = 0; i < 5; i++) {
+        // 1. Get new human and computer choices
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        // 2. Call playRound function
+        playRound(humanChoice, computerChoice);
+        // 3. display results
+        console.log(`Round ${i + 1}: Human: ${humanScore}, Computer: ${computerScore}`)
+    };
+    
+    // If humanScore is greater than computerScore say "Human Wins!"
+    if (humanScore > computerScore) {
+        console.log("Human Wins!");
+    // If humanScore is less than computerScore say "Computer Wins!"
+    } else if (humanScore < computerScore) {
+        console.log("Computer Wins!");
+    // If humanScore and computerScore are equal say "It's a Draw!"
     } else {
-        return "An Error Occured!"
+        console.assert.log("Draw!");
     };
 
 };
 
-console.log(playRound(humanChoice, computerChoice));
-console.log(`Human: ${humanScore}`);
-console.log(`Computer: ${computerScore}`);
+playGame();
+
 
 
